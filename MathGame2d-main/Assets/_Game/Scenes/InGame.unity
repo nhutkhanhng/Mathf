@@ -11361,7 +11361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textScore: {fileID: 207499005}
-  txtPointCollected: {fileID: 0}
+  txtPointCollected: {fileID: 375285208}
   textHighScore: {fileID: 527210317}
   highScorePanel: {fileID: 1967587760406481089}
   userName: {fileID: 1488084773}

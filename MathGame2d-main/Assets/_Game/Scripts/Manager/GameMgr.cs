@@ -15,7 +15,7 @@ public class DataAccount
 [System.Serializable]
 public class RequestUpdateData
 {
-    public int user_id;
+    // public int user_id;
     public int points;
 }
 [System.Serializable]
@@ -79,7 +79,11 @@ public class GameMgr : Singleton<GameMgr>
 
     public void SetSignInInfo(string signInRespone)
     {
+        Debug.Log("SetSignInInfo \n" + signInRespone);
+
         SignInRespone res = JsonUtility.FromJson<SignInRespone>(signInRespone) as SignInRespone;
+
+        Debug.Log("Parse Data Complete");
 
         this.userInfo.id = Int32.Parse(res.id);
         this.userInfo.name = res.name;
@@ -110,7 +114,7 @@ public class GameMgr : Singleton<GameMgr>
             },
             Body = new RequestUpdateData()
             {
-                user_id = this.userInfo.id,
+                // user_id = this.userInfo.id,
                 points = coin,
             }
         };

@@ -60,7 +60,6 @@ public class GameScene : Singleton<GameScene>
         _coinCollcected = 0;
         _timeRemain = timeFinish;
         NextTurn();
-
     }
 
 
@@ -143,7 +142,7 @@ public class GameScene : Singleton<GameScene>
         if (_level / 1 > _coinCollcected)
         {
             GameMgr.Instance.Collected(1,
-                () => _viewInGame.UpdateCoin(_coinCollcected++));
+                () => _viewInGame.UpdateCoin(++_coinCollcected));
 
         }
         // update score
