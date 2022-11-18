@@ -26,7 +26,11 @@ public class ViewInGame : View
     // private
     private bool _cancelCounting = false;
 
-
+    public void Receive(string userName, int Coin)
+    {
+        txtUserName.text = userName;
+        txtCoin.text = $"{Coin}";
+    }
     #region STATE
     public override void StartState()
     {
@@ -109,7 +113,17 @@ public class ViewInGame : View
     public void UpdateLevel(int level)
     {
         PlayCorrectAnimation();
-        txtLevel.text = $"{level}";
+        txtLevel.text = $"{level}";        
+    }
+
+    public void UpdateUserName(string userName)
+    {
+        txtUserName.text = userName;
+    }
+    public void UpdateCoin(int totalCoin)
+    {
+        txtCoin.text = $"{totalCoin}";        
+        txtCoin.transform.DOPunchPosition(Vector3.one, .5f).SetEase(Ease.OutBounce);
     }
 
 

@@ -34,9 +34,8 @@ public class GameScene : Singleton<GameScene>
     // private
     private Math _math = new Math();
     private int _level = 1;
+    public int _coinCollcected = 0;
     private float _timeRemain;
-
-
 
     #region UNITY
     private void Start()
@@ -57,8 +56,11 @@ public class GameScene : Singleton<GameScene>
 
     public void InitScene()
     {
+        _viewInGame.Receive(GameMgr.Instance.userInfo.name, 0);
+        _coinCollcected = 0;
         _timeRemain = timeFinish;
         NextTurn();
+
     }
 
 
@@ -138,6 +140,12 @@ public class GameScene : Singleton<GameScene>
         _viewInGame.CancelCounting();
         _viewInGame.UpdateLevel(_level++);
 
+        if (_level / 1 > _coinCollcected)
+        {
+            GameMgr.Instance.Collected(1,
+                () => _viewInGame.UpdateCoin(_coinCollcected++));
+
+        }
         // update score
         ScoreMgr.Instance.UpdateScore(1);
         SoundMgr.Instance.PlaySFX(SoundMgr.SFX_PICK_RIGHT);
@@ -176,7 +184,7 @@ public class GameScene : Singleton<GameScene>
         questions.ToList().ForEach(x => x.RefeshTurn());
 
         NextTurn();
-        if (_timeRemain >= 1.5f) _timeRemain -= .2f; 
+        if (_timeRemain >= 1.5f) _timeRemain -= .2f;
     }
 
 
@@ -193,7 +201,10 @@ public class GameScene : Singleton<GameScene>
 
     public void ResetGame()
     {
+        _viewInGame.Receive(GameMgr.Instance.userInfo.name, 0);
+
         _level = 1;
+        _coinCollcected = 0;
         _timeRemain = timeFinish;
         _viewInGame.ResetData();
 

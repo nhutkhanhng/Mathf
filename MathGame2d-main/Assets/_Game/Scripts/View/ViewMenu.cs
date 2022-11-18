@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ViewMenu : View
 {
 
-
+    public Text txtCoinCollecetd;
 
     #region  UNITY
     // private void Start()

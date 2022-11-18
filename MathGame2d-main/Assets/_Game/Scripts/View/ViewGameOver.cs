@@ -11,10 +11,21 @@ public class ViewGameOver : View
     // inspector
     [Space(10)]
     [SerializeField] private Text textScore;
+    [SerializeField] private Text txtPointCollected;
 
     [Space(10)]
     [SerializeField] private Text textHighScore;
     [SerializeField] private Transform highScorePanel;
+
+
+    public Text userName;
+    public Text txtPoints;
+
+    public void Receive(UserInfo userInfo)
+    {
+        userName.text = userInfo.name;
+        txtPoints.text = userInfo.points.ToString();
+    }
 
     private bool _isDoneGameover;
 
@@ -56,8 +67,8 @@ public class ViewGameOver : View
 
     private void StartView()
     {
-        ShowScore();
-
+        Receive(GameMgr.Instance.userInfo);
+        ShowScore();        
     }
 
     private void UpdateView()
@@ -84,6 +95,8 @@ public class ViewGameOver : View
         int highScore = ScoreMgr.Instance.highscore;
         textHighScore.text = highScore.ToString();
 
+        highScorePanel.gameObject.SetActive(score >= highScore);
+        txtPointCollected.text = GameScene.Instance._coinCollcected.ToString();
         try
         {
             // await CoreGame.CoreClient.Instance.ReportHightScore("archer_score", score);

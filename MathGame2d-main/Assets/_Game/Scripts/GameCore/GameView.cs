@@ -19,7 +19,7 @@ public class GameView : MonoBehaviour
     [Inject] private ViewSetting _viewSetting;
     [Inject] private ViewNone _viewNone;
 
-
+    [Inject] private ViewUserInfo _viewUesrInfo;
     // properties
     public ViewInfo GetViewInfo => _viewInfo;
 
@@ -84,6 +84,8 @@ public class GameView : MonoBehaviour
         _viewGameOver.gameObject.SetActive(_viewGameOver.name.Contains(nameScene));
         _viewSetting.gameObject.SetActive(_viewSetting.name.Contains(nameScene));
         _viewNone.gameObject.SetActive(_viewNone.name.Contains(nameScene));
+
+        _viewUesrInfo.gameObject.SetActive(_viewMenu.gameObject.activeSelf);
     }
 
 

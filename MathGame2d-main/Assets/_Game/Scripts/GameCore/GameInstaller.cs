@@ -20,6 +20,8 @@ public class GameInstaller : MonoInstaller
         this.Container.Bind<ViewGameOver>().FromComponentInHierarchy().AsSingle().Lazy();
         this.Container.Bind<ViewSetting>().FromComponentInHierarchy().AsSingle().Lazy();
         this.Container.Bind<ViewNone>().FromComponentInHierarchy().AsSingle().Lazy();
+
+        this.Container.Bind<ViewUserInfo>().FromComponentInHierarchy().AsSingle().Lazy();
     }
 
 }
